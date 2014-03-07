@@ -36,19 +36,13 @@
 			position: relative;
 		}
 
-		#noGL-video {
-			position: absolute;
-			margin: auto;
-		}
-
 		#bgvid {
 			z-index: -1;
 			display: none;
 		}
 
 		#about-box{
-			bottom: 20%;
-			color: #BBB;
+			
 		}
 
 		#infobox {
@@ -69,14 +63,21 @@
 
 		#noGL-video {
 			position: absolute;
-			bottom:30%;
-			left:10%;
-			text-align: center;
-			width:50%;
 			
-			margin-left:auto;
-			margin-right: auto;
+			left:10%;
+			right:10%;
+			top:10%;
+			height: 60%;
+			text-align: center;
+			width:80%;
+			margin: auto;
+			padding-bottom: 44%;
 			vertical-align: center;
+		}
+
+		.middle {
+			bottom: 20%;
+			color: #BBB;
 		}
 
 		.sidebar {
@@ -103,13 +104,13 @@
 			width:80px;
 		}
 
-		.noGL-BG {
+		/*.noGL-BG {
 			z-index: 0;
 			opacity: 0.4;
 			background-image: url('BG.jpg');
 			background-size:contain;
 			background-position:center;
-		}
+		}*/
 
 		.noGL-FG {
 			z-index: 2;
@@ -150,6 +151,10 @@
 			color: #EEE;
 		}
 
+		ul{
+			list-style-type: none;
+		}
+
 		.peoplelinks {
 			text-align: center;
 			font-size: 0.8em;
@@ -173,7 +178,7 @@
 	</video>
 	<div id="container"></div>
 	
-		<div id="about-box" class="sidebar medium" style="display: none;">
+		<div id="about-box" class="sidebar medium middle" style="display: none;">
 			<h3>DDSOS is a data project about the war on the internet.</h3>
 			<p>
 				Special software parses recently recorded <a href="http://en.wikipedia.org/wiki/Denial_of_service"> DoS (Denial of Service) attacks</a> from a database made by security researchers, a text engine turns them into stories, and reads them out loud into a telephone.<br/><br/>
@@ -181,11 +186,32 @@
 				The emergency phonebox that houses DDSOS latches onto buildings and fences, inviting listeners to experience the war on the internet.
 			</p>
 			<h3>DDSOS will be in New York in Summer 2014.</h3>
-			<p>Details will be posted here before that. For setting it up in other locations, just send us an <a href="mailto:info@omershapira.com">email</a>.</p>
+			<p>Details will be posted here soon.</a>.</p>
 			
 		</div>
+		
+		<div id="media-box" class="sidebar medium middle" style="display: none;">
+			<h3>Credits</h3>
+			<p>
+				DDSOS was created by Omer Shapira, Ryan Bartley and Max Ma. All rights reserved. Data was provided by <a href="https://www.shadowserver.org">Shadowserver</a>. Reproduced with permission.
+			</p>
+			<h3>Press</h3>
+			<p>The Awl - <a href="http://www.theawl.com/2014/03/the-internet-terror-phone">The Internet Terror Phone</a></p>
+			<h3>Exhibitions</h3>
+			<p><a href="http://www.theverge.com/2013/10/8/4815760/prism-breakup-is-hard-to-do-will-digital-privacy-ever-be-easy">PRISM Breakup</a> - EYEBEAM NYC, 2013</p>
+			<h3>Media Kit</h3>
+			<ul>
+			<li><a href="https://soundcloud.com/and-now-in-stereo/sets/ddsos-samples">Sounds</a></li>
+			<li><a href="http://www.flickr.com/photos/omerinstereo/sets/72157642002647993/">Photos</a></li>
+			<li><a href="https://vimeo.com/87977580">Video</a></li>
+			</ul>
+			<h3>Contact</h3>
+			<p>For inquiry and collaboration, <a href="mailto:info@omershapira.com">send us an email</a>.</p>
+			
+		</div>
+
 		<div id="about-bar" class="sidebar short">
-			<a id="about">About</a> 
+			<a id="about">About</a> | <a id="media">Media</a> 
 		</div>
 		<div id="infobox">
 			<h2 id="status">Loading.</h2>
@@ -339,7 +365,7 @@
 
 			function initVanilla(){
 				$("#container").addClass("noGL-BG");
-				$('<div class:"noGL-FG" id="noGL-video"><iframe src="//player.vimeo.com/video/87977580?byline=0&amp;portrait=0&amp;color=cccc00" width="960" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>').insertAfter("#container")
+				$('<div class:"noGL-FG" id="noGL-video"><iframe src="//player.vimeo.com/video/87977580?byline=0&amp;portrait=0&amp;color=cccc00"  height:"100%" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>').insertAfter("#container")
 				$(".noGL-BG").each(function(){$(this).removeClass("hidden")})
 				$(".noGL-FG").each(function(){$(this).removeClass("hidden")})
 				$("#status").text("Coming Soon.");
