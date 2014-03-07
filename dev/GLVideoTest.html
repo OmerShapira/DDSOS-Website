@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+    html, body {
+        background-color: #FF0000;
+        height: 100%;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    }
+
+    body {
+        background-color: #000000;
+        margin: 0;
+        font-family: Arial;
+        overflow: hidden;
+    }
+
+    #bgvid {
+    	z-index: 0;
+    	width: 100%;
+    	height: 100%;
+    	display: none;
+    }
+
+    #three {
+    	z-index: 1;
+    	width: 100%;
+    	height: 100%;
+    	position : absolute;
+    }
+
+    .item {
+        background-color: #DDDD33;
+        padding: 25px;
+    }
+    .item p {
+        font-size: 1.2em;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    }
+    .item h2 {
+        font-size: 3em ;
+    }
+</style>
+    </head>
+    <body>
+    
+        <video autoplay loop id="bgvid"> <!-- poster="BG.jpg" -->
+	        <source src="../www/video.mp4" type="video/mp4">
+	        <source src="http://vimeo.com/87977580/download?t=1393802196&v=231793268&s=74ecb436bf85d6eaccbb1e3d267e3601" type="video/mp4">
+        </video>
+        
+        <!-- <script src="http://rawgithub.com/mrdoob/three.js/master/build/three.min.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/postprocessing/EffectComposer.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/postprocessing/RenderPass.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/postprocessing/ShaderPass.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/postprocessing/MaskPass.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/shaders/DotScreenShader.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/shaders/CopyShader.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/postprocessing/FilmPass.js"></script>
+        <script src="http://rawgithub.com/mrdoob/three.js/master/examples/js/shaders/FilmShader.js"></script> -->
+
+        <script src="threejs/build/three.min.js"></script>
+        <script src="threejs/examples/js/postprocessing/EffectComposer.js"></script>
+        <script src="threejs/examples/js/postprocessing/RenderPass.js"></script>
+        <script src="threejs/examples/js/postprocessing/ShaderPass.js"></script>
+        <script src="threejs/examples/js/postprocessing/MaskPass.js"></script>
+        <script src="threejs/examples/js/shaders/DotScreenShader.js"></script>
+        <script src="threejs/examples/js/shaders/CopyShader.js"></script>
+        <script src="threejs/examples/js/postprocessing/FilmPass.js"></script>
+        <script src="threejs/examples/js/shaders/FilmShader.js"></script>
+        <div id="three">
+        <script src="threejs/examples/js/shaders/RGBShiftShader.js"></script>
+
+        	<script type="text/javascript">
+        	var scene, camera, renderer, video, videoContext, videoImage, videoTexture, effectsComposer;
+
+        	//BOOTSTRAP
+        	(function(){init();render();})();
+
+        	
+        	function render(){
+        		requestAnimationFrame(render); 
+        		update(); 
+        		var time = Date.now();
+        		effectsComposer.render();
+				// renderer.render(scene,camera);
+        	}
+
+
+        	function init(){
+        		scene = new THREE.Scene();
+        		var w = window.innerWidth, h = window.innerHeight;
+				camera = new THREE.OrthographicCamera( w / - 2, w / 2, h / 2, h / - 2, -10000, 10000 );
+				// camera = new THREE.PerspectiveCamera( 45, w/h, 0.1, 10000 );
+				
+        		renderer = new THREE.WebGLRenderer( {antialias:true} );
+        		renderer.setSize(w, h);
+
+				container = document.getElementById( 'three' );
+				container.appendChild( renderer.domElement );
+
+
+				video = document.getElementById( 'bgvid' );
+
+				videoImage = document.createElement( 'canvas' );
+				videoImage.width = 1440;
+				videoImage.height = 1080;
+
+				videoContext = videoImage.getContext('2d');
+				videoContext.fillStyle = '#000000';
+				videoContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+
+				videoTexture = new THREE.Texture( videoImage );
+				videoTexture.minFilter = THREE.LinearFilter;
+				videoTexture.magFilter = THREE.LinearFilter;
+				
+				var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+				var movieGeometry = new THREE.PlaneGeometry( 1440, 1080, 4, 4 );
+				var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+
+				scene.add(camera);
+				scene.add(movieScreen);
+
+				movieScreen.position.set(0,0,-500);
+				camera.position.set(0,0,0)
+
+				camera.lookAt(movieScreen.position);
+
+
+				effectsComposer = new THREE.EffectComposer( renderer );
+				effectsComposer.addPass( new THREE.RenderPass(scene, camera) );
+				// var dotScreenEffect = new THREE.ShaderPass( THREE.DotScreenShader );
+				// dotScreenEffect.uniforms[ 'scale' ].value = 4;
+				// dotScreenEffect.uniforms[ 'position' ] = {type : "v3", value: new THREE.Vector3( 0.0, 0.0, 0.0 )};
+				var pass = new THREE.FilmPass(0.05, 0.2, 1280/4, false);
+				pass.renderToScreen = true;
+				effectsComposer.addPass( pass );
+				// effectsComposer.addPass( dotScreenEffect );
+        	}
+
+        	function update(){
+        		if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+				videoContext.drawImage( video, 0, 0 );
+				if ( videoTexture ) 
+					videoTexture.needsUpdate = true;
+				}
+        	}
+        	</script>
+        </div>
+    </body>
+</html>

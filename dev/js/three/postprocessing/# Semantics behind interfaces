@@ -1,0 +1,15 @@
+# Semantics behind interfaces
+
+* Booleans and integers are deterministic.
+* Booleans will never go away
+* Therefore, buttons won't.
+
+# Tactility
+
+# Two paradigms
+
+Buttons are for discrete operations: Move one frame to the right, scale by exactly 15 percent, write "Plinth" on the screen.
+
+Humans don't always think in discrete scales, forcing them to think that way is slower.
+
+Hand gestures = continuous scales.

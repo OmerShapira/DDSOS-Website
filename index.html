@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta keywords="DDOS, Denial of Service, Internet Art">
+<meta author="Omer Shapira">
+<link rel="author" href="http://omershapira.com">
+<meta name="description" content="DDSOS is an emergency phone that lets you hear servers calling for help as they experience denial-of-service attacks.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- FB -->
+<meta property="og:title" content="DDSOS: Listen to the war on the internet"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://ddsos.technology" /> 
+<meta property="og:image" content="http://ddsos.technology/info.jpg"/>
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="http://ddsos.technology">
+<meta name="twitter:creator" content="@omershapira">
+<meta name="twitter:title" content="DDSOS: Listen to the war on the internet">
+<meta name="twitter:description" content="DDSOS is an emergency phone that lets you hear servers calling for help as they experience denial-of-service attacks.">
+<meta name="twitter:image" content="http://ddsos.technology/info.jpg">
+
+
+<head>
+	<title>DDSOS</title>
+	<meta charset="utf-8">
+	<style>
+		body {
+			margin: 0px;
+			background-color: #181818;
+			overflow: hidden;
+		}
+
+		#container {
+			position: relative;
+		}
+
+		#noGL-video {
+			position: absolute;
+			margin: auto;
+		}
+
+		#bgvid {
+			z-index: -1;
+			display: none;
+		}
+
+		#about-box{
+			bottom: 20%;
+			color: #BBB;
+		}
+
+		#infobox {
+			z-index: 1;
+			position: absolute;
+			bottom: 10%;
+			width: 100%;
+			text-align: center;
+		}
+		
+		#about-bar{
+			bottom: 8%;
+		}
+
+		#controls{
+			bottom: 4%;
+		}
+
+		#noGL-video {
+			position: absolute;
+			bottom:30%;
+			left:10%;
+			text-align: center;
+			width:50%;
+			
+			margin-left:auto;
+			margin-right: auto;
+			vertical-align: center;
+		}
+
+		.sidebar {
+			color:#AAA;
+			z-index: 2;
+			right: 0;
+			margin-left: auto;
+			background-color: rgba(0,0,0,0.5);
+			text-align: left;
+			cursor: default;
+		}
+
+		.medium {
+			position: absolute;
+			max-width: 220px;
+			font-size: 0.8em;
+			padding: 0 8% 5px 10px;
+		}
+
+		.short {
+			position: absolute;
+			padding: 5px 2% 5px 5px;
+			font-size: 0.7em;
+			width:80px;
+		}
+
+		.noGL-BG {
+			z-index: 0;
+			opacity: 0.4;
+			background-image: url('BG.jpg');
+			background-size:contain;
+			background-position:center;
+		}
+
+		.noGL-FG {
+			z-index: 2;
+			}
+
+
+		.hidden {
+			display:none;
+		}
+
+		html {
+			font-size: 1em;
+			line-height: 1.4;
+		}
+
+		h1, h2, h3 {
+			color: #CCC;
+			font-family: "Futura";
+			text-shadow: 4px 4px rgba(0,0,0,0.4);
+		}
+
+		h4, h5, p, .sidebar {
+			font-family: "Helvetica";
+			font-weight: "Light";
+		}
+
+		h1 {
+			font-size: 3em;
+			margin-bottom: 0.2%;
+		}
+
+		a, a:visited, a:hover {
+			color:#AAA;
+			text-decoration: none;
+		}
+
+		a:hover, .on {
+			color: #EEE;
+		}
+
+		.peoplelinks {
+			text-align: center;
+			font-size: 0.8em;
+			text-shadow: 2px 2px #000000;
+		}
+
+		.browsehappy {
+			margin: 0.2em 0;
+			background: #ccc;
+			color: #000;
+			padding: 0.2em 0;
+		}
+	</style>
+</head>
+<body>
+
+
+	<video loop id="bgvid"> 
+		<source src="video.mp4" type="video/mp4">
+			<!-- <source src="http://vimeo.com/87977580/download?t=1393802196&v=231793268&s=74ecb436bf85d6eaccbb1e3d267e3601" type="video/mp4"> -->
+	</video>
+	<div id="container"></div>
+	
+		<div id="about-box" class="sidebar medium" style="display: none;">
+			<h3>DDSOS is a data project about the war on the internet.</h3>
+			<p>
+				Special software parses recently recorded <a href="http://en.wikipedia.org/wiki/Denial_of_service"> DoS (Denial of Service) attacks</a> from a database made by security researchers, a text engine turns them into stories, and reads them out loud into a telephone.<br/><br/>
+
+				The emergency phonebox that houses DDSOS latches onto buildings and fences, inviting listeners to experience the war on the internet.
+			</p>
+			<h3>DDSOS will be in New York in Summer 2014.</h3>
+			<p>Details will be posted here before that. For setting it up in other locations, just send us an <a href="mailto:info@omershapira.com">email</a>.</p>
+			
+		</div>
+		<div id="about-bar" class="sidebar short">
+			<a id="about">About</a> 
+		</div>
+		<div id="infobox">
+			<h2 id="status">Loading.</h2>
+			<h4 class="noGL-FG hidden" style="color:#CCCCCC; text-size:0.5em; text-align: center;">This site uses WebGL, which is unavailable or disabled on your browser.</h4>
+			<div class="peoplelinks">
+				<p>
+					<a href="http://omershapira.com/">omershapira</a> <a href="http://github.com/ryanbartley">ryanbartley</a> <a href="http://maxmadesign.com">maxma</a>
+				</p>
+			</div>
+		</div>
+		<div id="controls" class="sidebar short">
+			<a id="video">Video</a> |
+			<a id="sound">Sound</a>
+		</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/three/three.min.js"></script>
+	<script src="js/three/Detector.js"></script>
+	<script src="js/three/shaders/CopyShader.js"></script>
+	<script src="js/three/postprocessing/EffectComposer.js"></script>
+	<script src="js/three/postprocessing/RenderPass.js"></script>
+	<script src="js/three/postprocessing/MaskPass.js"></script>
+	<script src="js/three/postprocessing/ShaderPass.js"></script>
+
+
+	<script type="x-shader/x-vertex" id="vertexShader">
+		varying vec2 vUv;
+		void main() {
+			vUv = uv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+		}
+
+	</script>
+
+	<script type="x-shader/x-fragment" id="fragmentShader"> 
+		uniform sampler2D tDiffuse;
+		uniform vec2 resolution;
+		uniform float time;
+		uniform float noisemix;
+		varying vec2 vUv;
+
+
+		float rand(vec2 co){
+		    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+		}
+
+		float tvnoise() {
+			vec3 p = vec3(floor( gl_FragCoord.xy * 500. / resolution.xy ) * 0.02,time);
+			float f = rand(p.xy + p.zz);
+			f *= rand(vec2(p.x * 0.0001 , p.y*0.001 + p.z * 0.000001));
+			f *= rand(vec2(p.x * 0.00001  , p.y+ p.z * 0.00001));
+			f *= rand(vec2(p.x * 0.000001  , p.y+ p.z * 0.0001));
+			return f;
+		}
+
+		void main() {
+			vec4 c = texture2D(tDiffuse, vUv); //texture color
+			float f = fract( vUv.y * resolution.y * 0.25) >= 0.65 ? 0.3 : 1.; //Seams
+			float coord = mod(gl_FragCoord.x + gl_FragCoord.y, 7.); //pixel index
+			vec3 colorMask = vec3(mod(coord, 3.)/3., mod(coord + 1., 3.)/3., mod(coord + 2., 3.)/3.); //pixel color
+			colorMask = mix(colorMask, vec3(1), 0.7);
+			vec3 color = (c.rgb + vec3(tvnoise() * noisemix)) * colorMask * f * 1.2;
+			gl_FragColor = vec4(color, c.a);
+		}
+
+	</script>
+
+	<script>
+
+		var camera, scene, renderer, composer, shader, effect, clock;
+		var movieScreen, movieMaterial, movieGeometry, video, videoImage, videoTexture, videoContext;
+		
+		$( document ).ready(
+			function(){
+				if (!Detector.webgl) {
+					initVanilla();
+				} else {
+					initWebGL();
+					animate();
+				}
+				initGlobal(); 
+		});
+		
+		///////////////// Global /////////////////
+
+		function initGlobal(){
+			$("#about").click(function(){toggleInfo();});
+		}
+
+		///////////////// Web GL /////////////////
+
+			function initWebGL() {
+
+				var w = window.innerWidth, h = window.innerHeight;
+
+				//Clock
+				clock = new THREE.Clock( true );
+
+				//Renderer
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize(w,h);
+				container = document.getElementById( 'container' );
+				container.appendChild( renderer.domElement );
+
+				//Camera
+				camera = new THREE.OrthographicCamera( w / -2, w / 2, h / 2, h / - 2, -10000, 10000 );
+				camera.position.z = -100;
+
+				//Scene
+				scene = new THREE.Scene();
+
+				//Video + Callback
+				video = document.getElementById( 'bgvid' );
+				video.setAttribute("preload", "auto");
+				video.onloadeddata = createAndPlayVideoCanvas;
+
+				//Post-Processing
+				shader = {
+					uniforms: {
+						"resolution": { type: "v2", value: new THREE.Vector2( window.innerWidth, window.innerHeight )},
+						"tDiffuse": { type: "t", value: null },
+						"time": { type: "f", value: 0.},
+						"noisemix": { type : "f", value: 1.}
+					},
+					vertexShader: document.getElementById( 'vertexShader' ).textContent,
+					fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+				};
+
+				composer = new THREE.EffectComposer( renderer );
+				composer.addPass( new THREE.RenderPass( scene, camera ) );
+
+				effect = new THREE.ShaderPass(shader);
+				effect.renderToScreen = true;
+				composer.addPass(effect);
+				
+				///////////////// Event /////////////////
+
+				$( window ).resize(onWindowResize);
+				$(document).keyup(function(evt) {
+					if (evt.keyCode == 32){toggleVideoPlayback();}
+				});
+				
+				///////////////// Controls /////////////////
+
+				$("#container").on('click tap', function(){toggleInfo();});
+				$("#video").click(function(){toggleVideoPlayback();});
+				$("#sound").click(function(){toggleAudio();});
+			}
+
+			///////////////// No GL /////////////////
+
+			function initVanilla(){
+				$("#container").addClass("noGL-BG");
+				$('<div class:"noGL-FG" id="noGL-video"><iframe src="//player.vimeo.com/video/87977580?byline=0&amp;portrait=0&amp;color=cccc00" width="960" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>').insertAfter("#container")
+				$(".noGL-BG").each(function(){$(this).removeClass("hidden")})
+				$(".noGL-FG").each(function(){$(this).removeClass("hidden")})
+				$("#status").text("Coming Soon.");
+				$("#controls").hide();
+				toggleInfo();
+			}
+
+			///////////////// Callbacks /////////////////
+
+			function toggleInfo(){
+				$("#about-box").fadeToggle(250);
+				$("#about").toggleClass("on");
+			}
+
+			function toggleAudio(whichState){
+				if (whichState === undefined){
+					video.muted = !video.muted;
+					$("#sound").toggleClass("on");
+				} else {
+					if (whichState == true){
+						video.muted = false;	
+						$("#sound").addClass("on");
+					} else {
+						video.muted = true;
+						$("#sound").removeClass("on");
+					}
+				}
+			}
+
+			function toggleVideoPlayback(){
+				if (video.paused) {
+					playVideo();
+				} else {
+					pauseVideo();
+				}
+			}
+
+			function playVideo(playSoundToo){
+				video.play();
+				$("#video").addClass("on");
+				if(playSoundToo === true){
+					toggleAudio(true);
+				}
+			}
+
+			function pauseVideo(){
+				video.pause();
+				$("#video").removeClass("on");
+			}
+
+			function onWindowResize() {
+				var w = window.innerWidth;
+				var h = window.innerHeight;
+
+				camera.aspect = w / h;
+				camera.updateProjectionMatrix();
+				renderer.setSize( w, h );
+				effect.uniforms['resolution'].value = new THREE.Vector2( w, h );
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+
+				update();
+				composer.render(0.1);
+			}
+
+			function update(){
+				if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+					videoContext.drawImage( video, 0, 0 );
+					if ( videoTexture ){
+						videoTexture.needsUpdate = true;
+						effect.uniforms['noisemix'].value = Math.max(effect.uniforms['noisemix'].value - 0.18, 0);	
+					}
+				}
+				effect.uniforms['time'].value = clock.getElapsedTime();
+			}
+
+			function createAndPlayVideoCanvas(){
+				var w = window.innerWidth, h = window.innerHeight;
+
+				videoImage = document.createElement( 'canvas' );
+				videoImage.width = video.videoWidth;
+				videoImage.height = video.videoHeight;
+
+				videoContext = videoImage.getContext('2d');
+				videoContext.fillStyle = '#000000';
+				videoContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+
+				videoTexture = new THREE.Texture( videoImage );
+				videoTexture.minFilter = THREE.LinearFilter;
+				videoTexture.magFilter = THREE.LinearFilter;
+
+				movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+				movieGeometry = new THREE.PlaneGeometry( w, h, 4, 4 );
+				movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+				movieScreen.position.z -=100;
+
+				scene.add(movieScreen);
+
+				camera.lookAt(movieScreen.position);
+
+				$("#status").text("Coming Soon.");
+				playVideo(true);
+			}
+		</script>
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-48593289-1', 'ddsos.technology');
+			ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Omer Shapira - - @omershapira
+    Ryan Bartley - - 
+    Max Ma - - @maxmadesign
+
+# THANKS
+
+    Eyebeam, Julia Kagansky, Ramsey Nasser, Allison Burtch, Jonathan Minard
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Normalize.css, jQuery, Modernizr
