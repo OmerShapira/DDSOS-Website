@@ -33,6 +33,7 @@
 		}
 
 		.gl #content {
+			top:20%;
 			z-index: 2;
 		}
 
@@ -188,9 +189,9 @@
 
 			</div>
 
-			<div id="content" class="sidebar medium hcenter">
+			<div id="content" class="sidebar medium hcenter" style="display:none;">
 
-				<div id="about-content">
+				<div id="about-content" style="display:none;">
 					<h3>DDSOS is a data project about the war on the internet.</h3>
 					<p>
 						Special software parses recently recorded <a href="http://en.wikipedia.org/wiki/Denial_of_service"> DoS (Denial of Service) attacks</a> from a database made by security researchers, a text engine turns them into stories, and reads them out loud into a telephone.<br/><br/>
@@ -201,7 +202,7 @@
 					<p>Details will be posted here soon.</p>
 				</div>
 
-				<div id="media-content">
+				<div id="media-content" style="display:none;">
 					<h3>Credits</h3>
 					<p>
 						DDSOS was created by Omer Shapira, Ryan Bartley and Max Ma. All rights reserved. Data was provided by <a href="https://www.shadowserver.org">Shadowserver</a>. Reproduced with permission.
@@ -359,7 +360,6 @@
 						toggleContent($(this).attr('id'));
 					});
 				});
-				// $("#about").click(function(){toggleInfo();});
 				$("#video").click(function(){toggleVideoPlayback();});
 				$("#sound").click(function(){toggleAudio();});
 			}
@@ -377,11 +377,26 @@
 			///////////////// Callbacks /////////////////
 
 			function toggleContent(name){
+				var contentToShow;
 				var contentName = "#" + name + "-content";
+				contentToShow = $(contentName);
 				$("#content > div").not(contentName).each(
 					function(){ $(this).hide(); }
 					);
-				$(contentName).toggle();
+
+				if (!contentToShow.is(':hidden')){
+					$("#content").hide(
+						250, 
+						function(){contentToShow.hide(100);}
+						);
+				} else {
+					contentToShow.show();
+					if ($("#content").is(":hidden") ){
+					$("#content").show(250);
+				} 
+				}
+
+				
 				$("#content-bar > a").not("#"+name).each(
 					function(){ $(this).removeClass("on"); }
 					);
