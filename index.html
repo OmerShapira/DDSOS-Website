@@ -24,7 +24,6 @@
 		}
 
 		.nogl #device {
-			/*width:  70%;*/
 			min-width:70%;
 			max-width: 90%;
 			margin: auto;
@@ -53,7 +52,6 @@
 			padding-bottom: 56.25%;
 			overflow: hidden;
 			height:0;
-			/*vertical-align: center;*/
 		}
 
 		#bgvid {
@@ -310,6 +308,7 @@
 					initVanilla();
 				} else {
 					initWebGL();
+					onWindowResize(); //here because of weird resize issues
 					animate();
 				}
 				initGlobal(); 
@@ -468,7 +467,6 @@
 			function onWindowResize() {
 				var w = window.innerWidth;
 				var h = window.innerHeight;
-
 				camera.aspect = w / h;
 				camera.updateProjectionMatrix();
 				renderer.setSize( w, h );
