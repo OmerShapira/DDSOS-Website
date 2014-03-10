@@ -485,7 +485,8 @@
 					videoContext.drawImage( video, 0, 0 );
 					if ( videoTexture ){
 						videoTexture.needsUpdate = true;
-						effect.uniforms['noisemix'].value = Math.max(effect.uniforms['noisemix'].value - 0.18, 0);	
+						var noiseConst = .5 * (1. + Math.pow(Math.sin(clock.getElapsedTime()), 9.0)) * 0.12 + 0.02;
+						effect.uniforms['noisemix'].value = Math.max(effect.uniforms['noisemix'].value - 0.18, noiseConst);	
 					}
 				}
 				effect.uniforms['time'].value = clock.getElapsedTime();
