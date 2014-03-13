@@ -179,8 +179,8 @@
 </head>
 <body>
 	<video loop id="bgvid"> 
-		<source src="video.mp4" type="video/mp4">
 		<source src="video.webm" type="video/webm">
+		<source src="video.mp4" type="video/mp4">
 		</video>
 		<div id="device" style="display:none;">
 			<div id="glContainer"></div>
@@ -246,7 +246,7 @@
 			</div>
 		</div>		
 		
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 		<script src="js/three/three.min.js"></script>
 		<script src="js/three/Detector.js"></script>
 		<script src="js/three/shaders/CopyShader.js"></script>
@@ -307,12 +307,15 @@
 			function(){
 				if (!Detector.webgl) {
 					initVanilla();
+					initGlobal(); 
 				} else {
 					initWebGL();
 					onWindowResize(); //here because of weird resize issues
+					initGlobal(); 
 					animate();
+					
 				}
-				initGlobal(); 
+				// initGlobal(); 
 			});
 		
 		///////////////// Global /////////////////
@@ -497,6 +500,7 @@
 				var w = window.innerWidth, h = window.innerHeight;
 
 				videoImage = document.createElement( 'canvas' );
+				console.log('Video Size :' + video.videoWidth + ' ' + video.videoHeight);
 				videoImage.width = video.videoWidth;
 				videoImage.height = video.videoHeight;
 
