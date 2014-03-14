@@ -352,6 +352,7 @@
 				video = document.getElementById( 'bgvid' );
 				video.setAttribute("preload", "auto");
 				video.onloadeddata = createAndPlayVideoCanvas;
+				video.load();
 
 				//Post-Processing
 				shader = {
@@ -500,7 +501,8 @@
 				var w = window.innerWidth, h = window.innerHeight;
 
 				videoImage = document.createElement( 'canvas' );
-				console.log('Video Size :' + video.videoWidth + ' ' + video.videoHeight);
+				// console.log('Video Size :' + video.videoWidth + ' ' + video.videoHeight);
+				
 				videoImage.width = video.videoWidth;
 				videoImage.height = video.videoHeight;
 
@@ -520,6 +522,11 @@
 				scene.add(movieScreen);
 
 				camera.lookAt(movieScreen.position);
+
+				if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+					movieScreen.scale.x = 1.33;
+					movieScreen.position.x = w * 0.16666;
+				}
 
 				$("#status").text("Coming Soon.");
 				playVideo(true);
